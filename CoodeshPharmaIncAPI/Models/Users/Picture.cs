@@ -43,12 +43,11 @@ namespace CoodeshPharmaIncAPI.Models
 
         //Conversion Operators:
 
-        //Converting from Picture to byte[]
+        //Converting between Picture and byte[]
         public static implicit operator byte[](Picture p) => p == null ? new byte[0] : p.Data;
-
         public static implicit operator Picture(byte[] b) => new Picture() { Data = b == null ? new byte[0] : b };
 
-        //Converting from Picture to string (the address of the image)
+        //Converting between Picture and string (the address of the image)
         public static explicit operator string(Picture p) => p.Address;
     }
 }

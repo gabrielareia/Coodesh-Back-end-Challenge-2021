@@ -12,11 +12,11 @@ namespace CoodeshPharmaIncAPI.ImportData
 {
     public class ImportData
     {
-        private const int MAX_USERS = 20;
-        private const int USERS_PER_CALL = 10;
+        private const int MAX_USERS = 2000;
+        private const int USERS_PER_CALL = 100;
         private readonly string API_URL = $"https://randomuser.me/api/?seed=foobar&results={USERS_PER_CALL}";
 
-        private JsonSerializerSettings jsonSettings = new JsonSerializerSettings()
+        private readonly JsonSerializerSettings jsonSettings = new JsonSerializerSettings()
         {
             ContractResolver = new IgnoreUserPropertiesContractResolver()
         };

@@ -24,8 +24,7 @@ namespace CoodeshPharmaIncAPI.ImportData
         private readonly IConfiguration _config;
         private Timer _timer;
 
-        public ScheduleImport(ILogger<ScheduleImport> logger, IConfiguration config,
-            IServiceScopeFactory scopeFactory)
+        public ScheduleImport(ILogger<ScheduleImport> logger, IConfiguration config, IServiceScopeFactory scopeFactory)
         {
             _logger = logger;
             _config = config;
@@ -38,7 +37,7 @@ namespace CoodeshPharmaIncAPI.ImportData
         public Task StartAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("Starting data import.");
-            
+
             DateTime? lastImported = GetLastImported();
 
             if (lastImported == null || lastImported.Value < GetTimeFromSettings().AddDays(-1))
@@ -88,22 +87,22 @@ namespace CoodeshPharmaIncAPI.ImportData
             _logger.LogInformation($"\nStarting Work");
             _logger.LogInformation($"\nImport initiated at: {DateTime.Now.ToString("HH:mm:ss")}\n");
 
-            var s = new Stopwatch();
-            s.Start();
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
 
             //Raising an event for the data import be implemented in a specific class.
             int importedItemsCount = await Work?.Invoke(_scopeFactory);
 
-            s.Stop();
+            stopwatch.Stop();
 
             //Reset Timer.            
             DateTime scheduledTime = ScheduleNextWork();
             DateTime currentTime = DateTime.Now;
-            
+
             //Update "last updated" in db for the next time.
             UpdateTimeDb(currentTime);
 
-            _logger.LogInformation($"\n{ s.ElapsedMilliseconds} ms to execute.\n" +
+            _logger.LogInformation($"\n{ stopwatch.ElapsedMilliseconds} ms to execute.\n" +
                 $"Imported {importedItemsCount} new random users at {currentTime}.\n" +
                 $"Next data import scheduled to {scheduledTime.ToString("dd/MM/yyyy HH:mm:ss")}, " +
                 $"{(scheduledTime - currentTime).ToString(@"hh\:mm\:ss")} hours from now.\n");

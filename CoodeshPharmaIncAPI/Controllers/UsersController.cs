@@ -1,4 +1,5 @@
 ﻿using CoodeshPharmaIncAPI.Models;
+using CoodeshPharmaIncAPI.Models.Pagination;
 using CoodeshPharmaIncAPI.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,9 +15,9 @@ namespace CoodeshPharmaIncAPI.Controllers
     {
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> GetAllUsers()
+        public async Task<IActionResult> GetAllUsers([FromQuery]UserPagination pagination)
         {
-            User[] users = await SelectAllUsers();
+            User[] users = await SelectAllUsers(pagination);
 
             if (users == null || users.Length == 0)
             {
@@ -52,7 +53,7 @@ namespace CoodeshPharmaIncAPI.Controllers
 
         [HttpGet]
         [Route("{userId}/picture")]
-        [ApiExplorerSettings(IgnoreApi = true)]
+        [ApiExplorerSettings(IgnoreApi = true)] //Hide from SwaggerUI
         public IActionResult GetUserPicture(int userId)
         {
             User user = SelectUser(userId);
@@ -89,7 +90,7 @@ namespace CoodeshPharmaIncAPI.Controllers
             {
                 if (e.GetType() == typeof(DbUpdateException))
                 {
-                    return BadRequest("Something wen't wrong, user could not be updated. Check if the properties meet all the conditions of the database, like size and types for example.");
+                    return BadRequest("Something wen't wrong, user could not be updated. Check if the properties meet all the required conditions for the database.");
                 }
                 return StatusCode(500, "Something wen't wrong and the user could not be updated, please try again.");
             }
@@ -100,7 +101,9 @@ namespace CoodeshPharmaIncAPI.Controllers
         [ApiKey]
         public IActionResult DeleteUser(int userId)
         {
-            if (!RemoveUser(userId))
+            bool removed = RemoveUser(userId);
+
+            if (!removed)
             {
                 return NotFound($"User not found. There is no match for id: {userId}");
             }

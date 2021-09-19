@@ -5,7 +5,7 @@ namespace CoodeshPharmaIncAPI.Models
     public struct UserDate
     {
         public DateTime Date { get; set; }
-        public int Age => GetAge();
+        public int Age => GetAge(); //Following the RandomUserAPI pattern, but keeping it updated.
 
 
         /// <summary>
@@ -18,7 +18,7 @@ namespace CoodeshPharmaIncAPI.Models
 
             //Converting from DateTime to an integer with the format "yyyyMMdd"
             //It is the same as int.parse(Date.ToString("yyyyMMdd"), but faster.
-            int today = (t.Year * 100 + t.Month) * 100 + t.Day; ;
+            int today = (t.Year * 100 + t.Month) * 100 + t.Day;
             int date = (Date.Year * 100 + Date.Month) * 100 + Date.Day;
 
             int result = today - date;
@@ -27,6 +27,8 @@ namespace CoodeshPharmaIncAPI.Models
 
             return age;
         }
+
+        //Operators:
 
         public static implicit operator int(UserDate d) => d.Age;
         public static implicit operator DateTime(UserDate d) => d.Date;

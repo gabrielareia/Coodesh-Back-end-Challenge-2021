@@ -21,7 +21,6 @@ namespace CoodeshPharmaIncAPI.Database
 
         public PharmaContext(DbContextOptions options) : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

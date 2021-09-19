@@ -1,6 +1,8 @@
 ﻿using CoodeshPharmaIncAPI.Database;
 using CoodeshPharmaIncAPI.JsonConvertion.ContractResolver;
 using CoodeshPharmaIncAPI.Models;
+using CoodeshPharmaIncAPI.Models.Extensions;
+using CoodeshPharmaIncAPI.Models.Pagination;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Query;
@@ -24,9 +26,9 @@ namespace CoodeshPharmaIncAPI.Controllers
         #region GET users/
 
         [NonAction]
-        private async Task<User[]> SelectAllUsers()
+        private async Task<User[]> SelectAllUsers(UserPagination pagination)
         {
-            User[] users = await QueryAllUsers();
+            User[] users = await QueryAllUsers(pagination);
 
             if (users == null)
             {
@@ -48,9 +50,10 @@ namespace CoodeshPharmaIncAPI.Controllers
         }
 
         [NonAction]
-        private async Task<User[]> QueryAllUsers()
+        private async Task<User[]> QueryAllUsers(UserPagination pagination)
         {
-            return await FillUser(_ctx.User)
+            return await FillUser(_ctx.User.Page(pagination))
+                .Where(t => t.Status == UserStatus.Published) //To get users with other statuses search the user by the id.
                 .ToArrayAsync();
         }
 
@@ -157,6 +160,7 @@ namespace CoodeshPharmaIncAPI.Controllers
         public IIncludableQueryable<User, Picture> FillUser(IQueryable<User> user)
         {
             return user
+               .OrderBy(t => t.Id)
                .Include(t => t.Name)
                .Include(t => t.Contact)
                .Include(t => t.Location)
@@ -165,8 +169,6 @@ namespace CoodeshPharmaIncAPI.Controllers
                .Include(t => t.Picture);
         }
         #endregion
-
-
 
     }
 }

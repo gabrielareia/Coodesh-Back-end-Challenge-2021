@@ -14,8 +14,6 @@ namespace CoodeshPharmaIncAPI.JsonConvertion.ContractResolver
         {
             JsonProperty property = base.CreateProperty(member, memberSerialization);
 
-
-
             if (member.DeclaringType == typeof(User))
             {
                 if (property.PropertyName == "Id" || property.PropertyName == "Location")
