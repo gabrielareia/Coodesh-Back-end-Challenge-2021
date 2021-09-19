@@ -10,7 +10,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
         {
             builder
                 .Property(t => t.Username)
-                .HasColumnType("nvarchar(40)")
+                .HasColumnType("nvarchar(50)")
                 .IsRequired();
 
             builder

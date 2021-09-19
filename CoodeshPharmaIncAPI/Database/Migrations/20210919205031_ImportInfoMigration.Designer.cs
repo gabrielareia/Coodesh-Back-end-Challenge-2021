@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CoodeshPharmaIncAPI.Database.Migrations
 {
     [DbContext(typeof(PharmaContext))]
-    [Migration("20210919053018_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20210919205031_ImportInfoMigration")]
+    partial class ImportInfoMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,7 +32,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                         .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<string>("Phone")
                         .HasColumnType("nvarchar(30)");
@@ -40,6 +40,21 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Contact");
+                });
+
+            modelBuilder.Entity("CoodeshPharmaIncAPI.Models.Import.ImportInfo", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("LastImported")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ImportInfo");
                 });
 
             modelBuilder.Entity("CoodeshPharmaIncAPI.Models.Location", b =>
@@ -90,7 +105,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("Id");
 
@@ -106,14 +121,14 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
 
                     b.Property<string>("First")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Last")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("nvarchar(5)");
+                        .HasColumnType("nvarchar(12)");
 
                     b.HasKey("Id");
 
@@ -149,7 +164,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Gender")
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(12)");
 
                     b.Property<DateTime>("Imported_T")
                         .ValueGeneratedOnAdd()
@@ -167,7 +182,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nationality")
-                        .HasColumnType("nvarchar(4)");
+                        .HasColumnType("nvarchar(8)");
 
                     b.Property<int?>("PictureId")
                         .HasColumnType("int");

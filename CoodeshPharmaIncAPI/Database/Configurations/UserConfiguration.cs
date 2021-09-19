@@ -12,7 +12,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
         {
             builder
                 .Property(t => t.Gender)
-                .HasColumnType("nvarchar(10)");
+                .HasColumnType("nvarchar(12)");
 
             builder
                 .Property(t => t.Birthday)
@@ -26,7 +26,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
           
             builder
                 .Property(t => t.Nationality)
-                .HasColumnType("nvarchar(4)");
+                .HasColumnType("nvarchar(8)");
 
             builder
                 .HasOne(t => t.Name)

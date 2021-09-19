@@ -1,11 +1,13 @@
 ﻿using CoodeshPharmaIncAPI.Database.Configurations;
 using CoodeshPharmaIncAPI.Models;
+using CoodeshPharmaIncAPI.Models.Import;
 using Microsoft.EntityFrameworkCore;
 
 namespace CoodeshPharmaIncAPI.Database
 {
     public class PharmaContext : DbContext
     {
+        //Models
         public DbSet<User> User { get; set; }
         public DbSet<Name> Name { get; set; }
         public DbSet<Login> Login { get; set; }
@@ -14,6 +16,8 @@ namespace CoodeshPharmaIncAPI.Database
         public DbSet<Location> Location { get; set; }
         public DbSet<UserTimeZone> TimeZone { get; set; }
 
+        //Import
+        public DbSet<ImportInfo> ImportInfo { get; set; }
 
         public PharmaContext(DbContextOptions options) : base(options)
         {

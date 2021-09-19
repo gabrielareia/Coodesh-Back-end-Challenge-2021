@@ -14,7 +14,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
 
             builder
                 .Property(t => t.Email)
-                .HasColumnType("nvarchar(50)");
+                .HasColumnType("nvarchar(60)");
 
             builder
                 .Property(t => t.Phone)

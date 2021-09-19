@@ -76,7 +76,7 @@ namespace CoodeshPharmaIncAPI.Controllers
         private User QueryOneUser(int id)
         {
             return FillUser(_ctx.User.Where(u => u.Id == id))
-                .AsNoTracking()
+                .AsNoTracking() //So it won't interfere with the context.Update method
                 .FirstOrDefault();
         }
 

@@ -13,7 +13,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Email = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(60)", nullable: true),
                     Phone = table.Column<string>(type: "nvarchar(30)", nullable: true),
                     Cellphone = table.Column<string>(type: "nvarchar(30)", nullable: true)
                 },
@@ -29,7 +29,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UUID = table.Column<string>(type: "nvarchar(50)", nullable: false),
-                    Username = table.Column<string>(type: "nvarchar(40)", nullable: false)
+                    Username = table.Column<string>(type: "nvarchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -42,9 +42,9 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(5)", nullable: true),
-                    First = table.Column<string>(type: "nvarchar(40)", nullable: false),
-                    Last = table.Column<string>(type: "nvarchar(40)", nullable: false)
+                    Title = table.Column<string>(type: "nvarchar(12)", nullable: true),
+                    First = table.Column<string>(type: "nvarchar(50)", nullable: false),
+                    Last = table.Column<string>(type: "nvarchar(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -109,7 +109,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Gender = table.Column<string>(type: "nvarchar(10)", nullable: true),
+                    Gender = table.Column<string>(type: "nvarchar(12)", nullable: true),
                     NameId = table.Column<int>(type: "int", nullable: true),
                     ContactId = table.Column<int>(type: "int", nullable: true),
                     LoginId = table.Column<int>(type: "int", nullable: true),
@@ -117,7 +117,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                     Registered = table.Column<DateTime>(type: "datetime", nullable: false),
                     PictureId = table.Column<int>(type: "int", nullable: true),
                     LocationId = table.Column<int>(type: "int", nullable: true),
-                    Nationality = table.Column<string>(type: "nvarchar(4)", nullable: true),
+                    Nationality = table.Column<string>(type: "nvarchar(8)", nullable: true),
                     imported_t = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValueSql: "GETDATE()"),
                     status = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
