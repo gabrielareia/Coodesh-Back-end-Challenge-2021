@@ -14,7 +14,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
 
             builder
                 .Property(t => t.First)
-                .HasColumnType("nvarchar(30)")
+                .HasColumnType("nvarchar(40)")
                 .IsRequired();
 
             builder

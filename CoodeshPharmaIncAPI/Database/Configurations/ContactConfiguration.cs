@@ -10,15 +10,15 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
         {
             builder
                 .Property(t => t.Cellphone)
-                .HasColumnType("nvarchar(20)");
+                .HasColumnType("nvarchar(30)");
 
             builder
                 .Property(t => t.Email)
-                .HasColumnType("nvarchar(40)");
+                .HasColumnType("nvarchar(50)");
 
             builder
                 .Property(t => t.Phone)
-                .HasColumnType("nvarchar(20)");
+                .HasColumnType("nvarchar(30)");
         }
     }
 }

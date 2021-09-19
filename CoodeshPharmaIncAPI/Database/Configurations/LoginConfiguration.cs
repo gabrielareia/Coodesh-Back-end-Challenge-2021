@@ -10,12 +10,12 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
         {
             builder
                 .Property(t => t.Username)
-                .HasColumnType("nvarchar(30)")
+                .HasColumnType("nvarchar(40)")
                 .IsRequired();
 
             builder
                 .Property(t => t.UUID)
-                .HasColumnType("nvarchar(40)")
+                .HasColumnType("nvarchar(50)")
                 .IsRequired();
         }
     }

@@ -27,13 +27,13 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Cellphone")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(30)");
 
                     b.HasKey("Id");
 
@@ -54,13 +54,13 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                         .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Number")
-                        .HasColumnType("nvarchar(10)");
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("PostCode")
                         .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("State")
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Street")
                         .HasColumnType("nvarchar(80)");
@@ -84,11 +84,11 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
 
                     b.Property<string>("UUID")
                         .IsRequired()
-                        .HasColumnType("nvarchar(40)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Username")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(40)");
 
                     b.HasKey("Id");
 
@@ -104,7 +104,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
 
                     b.Property<string>("First")
                         .IsRequired()
-                        .HasColumnType("nvarchar(30)");
+                        .HasColumnType("nvarchar(40)");
 
                     b.Property<string>("Last")
                         .IsRequired()
@@ -165,7 +165,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Nationality")
-                        .HasColumnType("nvarchar(2)");
+                        .HasColumnType("nvarchar(4)");
 
                     b.Property<int?>("PictureId")
                         .HasColumnType("int");
@@ -211,10 +211,10 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Description")
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(80)");
 
                     b.Property<string>("Offset")
-                        .HasColumnType("nvarchar(8)");
+                        .HasColumnType("nvarchar(12)");
 
                     b.HasKey("Id");
 
@@ -226,7 +226,7 @@ namespace CoodeshPharmaIncAPI.Database.Migrations
                     b.HasOne("CoodeshPharmaIncAPI.Models.UserTimeZone", "TimeZone")
                         .WithMany()
                         .HasForeignKey("TimeZoneId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("TimeZone");
                 });

@@ -18,7 +18,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
 
             builder
                 .Property(t => t.Number)
-                .HasColumnType("nvarchar(10)");
+                .HasColumnType("nvarchar(20)");
 
             builder
                 .Property(t => t.PostCode)
@@ -26,7 +26,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
 
             builder
                 .Property(t => t.State)
-                .HasColumnType("nvarchar(40)");
+                .HasColumnType("nvarchar(50)");
 
             builder
                 .Property(t => t.Street)
@@ -36,7 +36,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
                 .HasOne(t => t.TimeZone)
                 .WithMany()
                 .HasForeignKey("TimeZoneId")
-                .OnDelete(DeleteBehavior.Cascade);
+                .OnDelete(DeleteBehavior.SetNull);
         }
     }
 }

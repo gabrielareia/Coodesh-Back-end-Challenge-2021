@@ -3,13 +3,13 @@ using CoodeshPharmaIncAPI.Security;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace CoodeshPharmaIncAPI.Controllers
 {
     [ApiController]
     [Route("api/users/")]
-    [Produces("application/json")]
     public partial class UsersController : ControllerBase
     {
         [HttpGet]
@@ -25,7 +25,10 @@ namespace CoodeshPharmaIncAPI.Controllers
 
             string json = SerializeToJson(users);
 
-            return Ok(json);
+            var response = Content(json, "application/json", Encoding.UTF8);
+            response.StatusCode = 200;
+
+            return response;
         }
 
         [HttpGet]
@@ -41,7 +44,25 @@ namespace CoodeshPharmaIncAPI.Controllers
 
             string json = SerializeToJson(user);
 
-            return Ok(json);
+            var response = Content(json, "application/json", Encoding.UTF8);
+            response.StatusCode = 200;
+
+            return response;
+        }
+
+        [HttpGet]
+        [Route("{userId}/picture")]
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public IActionResult GetUserPicture(int userId)
+        {
+            User user = SelectUser(userId);
+
+            if (user == null)
+            {
+                return NotFound($"User not found. There is no match for id: {userId}");
+            }
+
+            return File(user.Picture, "image/jpeg");
         }
 
 

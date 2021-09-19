@@ -31,9 +31,9 @@ namespace CoodeshPharmaIncAPI
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CoodeshPharmaIncAPI", Version = "v1" });
             });
 
-            services.AddHostedService<ScheduleImport>();
             services.AddHttpClient();
 
+            services.AddHostedService<ScheduleImport>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

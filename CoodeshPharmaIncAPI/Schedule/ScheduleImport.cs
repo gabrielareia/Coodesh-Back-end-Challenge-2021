@@ -1,29 +1,41 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CoodeshPharmaIncAPI.Database;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
+using System.Diagnostics;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace CoodeshPharmaIncAPI.Schedule
 {
-    public class ScheduleImport : IHostedService, IDisposable
+    public partial class ScheduleImport : IHostedService, IDisposable
     {
-        public delegate void WorkHandler();
-        public static event WorkHandler Work;
+        // public delegate Task<int> WorkHandler();
+        // public static event WorkHandler Work;
 
+        private readonly HttpClient _client;
+        //private readonly PharmaContext _ctx;
+        private readonly IServiceScopeFactory _scopeFactory;
 
         private const string CONFIG_KEY = "ImportTime";
         private readonly ILogger<ScheduleImport> _logger;
         private readonly IConfiguration _config;
         private Timer _timer;
 
-        public ScheduleImport(ILogger<ScheduleImport> logger, IConfiguration config)
+        public ScheduleImport(ILogger<ScheduleImport> logger, IConfiguration config, 
+            HttpClient client, IServiceScopeFactory scopeFactory)
         {
             _logger = logger;
             _config = config;
+            _client = client;
+            _scopeFactory = scopeFactory;
         }
 
+        #region Start
         public Task StartAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("Starting data import.");
@@ -32,16 +44,29 @@ namespace CoodeshPharmaIncAPI.Schedule
 
             return Task.CompletedTask;
         }
+        #endregion
 
-        private void DoWork(object state)
+        #region DoSomeWork
+        private async void DoWork(object state)
         {
             DateTime currentTime = DateTime.Now;
             DateTime scheduledTime = ScheduleNextWork();
 
-            //Raising an event for the data import be implemented in a specific class.
-            Work?.Invoke();
+            // //Raising an event for the data import be implemented in a specific class.
+            // int importedItems = await Work?.Invoke();
 
-            _logger.LogInformation($"\nImported new data at {currentTime}. Next data import scheduled to {scheduledTime}.\n");
+            var s = new Stopwatch();
+            s.Start();
+
+            // >>>>> TEM COISA Q SERIA TRUNCATED, PRECISA MEXER AMANHA. <<<<<
+            // >>>>> O TITULO DO NOME ACEITA "MONSIEUR", MUDAR A QUANTIDADE ACEITA<<<<<
+            int importedItems = await Populate();
+            s.Stop();
+
+            _logger.LogInformation($"\n\nIt took { s.ElapsedMilliseconds} ms to execute\n" + 
+                $"Imported {importedItems} new User data at {currentTime}.\n" +
+                $"Next data import scheduled to {scheduledTime.ToString("dd/MM/yyyy HH:mm:ss")}, " +
+                $"{(scheduledTime - currentTime).ToString(@"hh\:mm\:ss")} hours from now.\n");
         }
 
         private DateTime ScheduleNextWork()
@@ -69,7 +94,9 @@ namespace CoodeshPharmaIncAPI.Schedule
 
             return DateTime.Now.Add(timeRemaining);
         }
+        #endregion
 
+        #region End
         public Task StopAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("Stopping data import.");
@@ -83,5 +110,6 @@ namespace CoodeshPharmaIncAPI.Schedule
         {
             _timer?.Dispose();
         }
+        #endregion
     }
 }

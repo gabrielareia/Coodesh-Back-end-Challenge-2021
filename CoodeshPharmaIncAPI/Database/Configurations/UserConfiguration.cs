@@ -26,7 +26,7 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
           
             builder
                 .Property(t => t.Nationality)
-                .HasColumnType("nvarchar(2)");
+                .HasColumnType("nvarchar(4)");
 
             builder
                 .HasOne(t => t.Name)

@@ -10,11 +10,11 @@ namespace CoodeshPharmaIncAPI.Database.Configurations
         {
             builder
                 .Property(t => t.Description)
-                .HasColumnType("nvarchar(20)");
+                .HasColumnType("nvarchar(80)");
 
             builder
                 .Property(t => t.Offset)
-                .HasColumnType("nvarchar(8)");
+                .HasColumnType("nvarchar(12)");
         }
     }
 }

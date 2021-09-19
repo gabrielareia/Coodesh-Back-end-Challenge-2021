@@ -4,7 +4,7 @@ namespace CoodeshPharmaIncAPI.Controllers
 {
     [ApiController]
     [Route("api/")]
-    public class HomeController : ControllerBase
+    public class InfoController : ControllerBase
     {
         [HttpGet]
         [Route("")]

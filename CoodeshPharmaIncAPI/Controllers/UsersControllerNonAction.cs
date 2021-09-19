@@ -26,7 +26,7 @@ namespace CoodeshPharmaIncAPI.Controllers
         [NonAction]
         private async Task<User[]> SelectAllUsers()
         {
-            User[] users = await QueryAllUsers().ToArrayAsync();
+            User[] users = await QueryAllUsers();
 
             if (users == null)
             {
@@ -48,10 +48,10 @@ namespace CoodeshPharmaIncAPI.Controllers
         }
 
         [NonAction]
-        private IQueryable<User> QueryAllUsers()
+        private async Task<User[]> QueryAllUsers()
         {
-            return FillUser(_ctx.User)
-                .AsQueryable();
+            return await FillUser(_ctx.User)
+                .ToArrayAsync();
         }
 
         #endregion
@@ -123,8 +123,8 @@ namespace CoodeshPharmaIncAPI.Controllers
             _ctx.Name.Remove(user.Name);
             _ctx.Login.Remove(user.Login);
             _ctx.Contact.Remove(user.Contact);
-            _ctx.TimeZone.Remove(user.Location.TimeZone);
             _ctx.Location.Remove(user.Location);
+            _ctx.TimeZone.Remove(user.Location.TimeZone);
             _ctx.Picture.Remove(user.Picture);
             _ctx.User.Remove(user);
 
