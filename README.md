@@ -2,7 +2,7 @@
 ###### <p align="right">Developed by [Gabriel Areia](https://github.com/gabrielareia)</p>
 This is a *challenge by [Coodesh](https://coodesh.com)*, where I needed to create a REST API for a fictional company using .NET Core.
 
-Here is the original challenge instructions (in Portuguese): https://lab.coodesh.com/public-challenges/back-end-challenge-2021
+Here is the original challenge instruction (in Portuguese): https://lab.coodesh.com/public-challenges/back-end-challenge-2021
 
 ## The project
 The challenge consisted in creating a REST API for the fictional company *Pharma Inc*, that would help the company to visualize information about their patients, in a simple and organized way. 
