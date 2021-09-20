@@ -62,6 +62,10 @@ namespace CoodeshPharmaIncAPI.Controllers
             {
                 return NotFound($"User not found. There is no match for id: {userId}");
             }
+            if (user.Picture.Data == null)
+            {
+                return NotFound($"Picture not found.");
+            }
 
             return File(user.Picture, "image/jpeg");
         }

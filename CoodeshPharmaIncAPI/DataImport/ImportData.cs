@@ -14,7 +14,7 @@ namespace CoodeshPharmaIncAPI.ImportData
     {
         private const int MAX_USERS = 2000;
         private const int USERS_PER_CALL = 100;
-        private readonly string API_URL = $"https://randomuser.me/api/?seed=foobar&results={USERS_PER_CALL}";
+        private readonly string API_URL = $"https://randomuser.me/api?results={USERS_PER_CALL}";
 
         private readonly JsonSerializerSettings jsonSettings = new JsonSerializerSettings()
         {

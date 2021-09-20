@@ -10,7 +10,7 @@ namespace CoodeshPharmaIncAPI.Security
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class ApiKeyAttribute : Attribute, IAsyncActionFilter
     {
-        const string APIKEY = "apiKey";
+        const string APIKEY = "ApiKey";
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
             if (!context.HttpContext.Request.Headers.TryGetValue(APIKEY, out var incomingApiKey))

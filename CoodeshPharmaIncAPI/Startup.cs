@@ -29,7 +29,7 @@ namespace CoodeshPharmaIncAPI
 
             services
                 .AddControllers()
-                .AddNewtonsoftJson(o => //Change how enums appear in SwaggerUI (from int to string)
+                .AddNewtonsoftJson(o => //Change how enums appear in SwaggerUI (from int to //string)
                 {
                     o.SerializerSettings.Converters.Add(new StringEnumConverter
                     {
@@ -40,6 +40,24 @@ namespace CoodeshPharmaIncAPI
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CoodeshPharmaIncAPI", Version = "v1" });
+                c.AddSecurityDefinition("ApiKey", new OpenApiSecurityScheme()
+                {
+                    Type = SecuritySchemeType.ApiKey,
+                    In = ParameterLocation.Header,
+                    Name = "ApiKey",
+                    Description = "Use an Api Key to update or delete from the database.",
+                });               
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "ApiKey" }
+                        },
+                        new string[] { }
+                    }
+                });
+
             });
             services.AddSwaggerGenNewtonsoftSupport(); //Also part of enums configuration in swagger.
 
@@ -54,7 +72,7 @@ namespace CoodeshPharmaIncAPI
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CoodeshPharmaIncAPI v1");
-                c.RoutePrefix = "";
+                c.RoutePrefix = "";                
             });
 
             app.UseHttpsRedirection();

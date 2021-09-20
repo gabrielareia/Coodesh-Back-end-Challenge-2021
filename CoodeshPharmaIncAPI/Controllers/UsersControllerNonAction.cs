@@ -52,9 +52,10 @@ namespace CoodeshPharmaIncAPI.Controllers
         [NonAction]
         private async Task<User[]> QueryAllUsers(UserPagination pagination)
         {
-            return await FillUser(_ctx.User.Page(pagination))
-                .Where(t => t.Status == UserStatus.Published) //To get users with other statuses search the user by the id.
-                .ToArrayAsync();
+            //To get users with other statuses search the user by the id.
+            var filtered = _ctx.User.Where(t => t.Status == UserStatus.Published);
+
+            return await FillUser(_ctx.User.Page(pagination)).ToArrayAsync();
         }
 
         #endregion
