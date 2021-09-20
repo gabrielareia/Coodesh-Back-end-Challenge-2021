@@ -9,7 +9,7 @@ The challenge consisted in creating a REST API for the fictional company *Pharma
 
 To simulate the users, the challenge requested the usage of the https://randomuser.me API, and everyday, in a predefined hour, my API has to update all the users in the database with new ones, a Hosted Service was needed to handle this scheduling.
 
-Unfortunately there was a short deadline for this project, so I couldn't do everything I wanted, and if I had more time I would organize the code better and improve the performance. But I think it is already pretty good and I am pretty happy with the way it is. 
+Unfortunately there was a short deadline for this project, so I couldn't do everything I wanted. If I had more time I would create Unit Tests using xUnit, organize the code better and improve the performance. But I think it is already pretty good the way it is and I am pretty happy with the result. 
 
 Feel free to explore the code, I might update something in the future just for fun.
 
