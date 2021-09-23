@@ -25,7 +25,7 @@ Fique a vontade para explorar o código, talvez eu atualize algo no futuro só p
 
 
 ## Instruções
-Clone ou baixe esse repositório, tenha certeza que todos os pacotes ou dependências estão instalados, execute o programa.
+Clone ou baixe esse repositório, tenha certeza que todos os pacotes ou dependências estão instalados, na janela "Package Manager Console" execute o comando ```update-database``` para criar o banco de dados, e finalmente execute o programa (espere alguns segundos até que o programa termine de baixar os dados da API).
 
 Vai abrir a UI do Swagger, eu configurei para a UI aparecer como página principal (só "https://[dominio].com", e não "https://[dominio].com/swagger/index.html").
 
