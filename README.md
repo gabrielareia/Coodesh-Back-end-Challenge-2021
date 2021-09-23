@@ -24,7 +24,7 @@ Feel free to explore the code, I might update something in the future just for f
 - To organize myself and help me work quicker I used **https://trello.com**
 
 ## Instructions
-Clone or download this repo, make sure all the packages or any dependencies are installed, run it.
+Clone or download this repo, make sure all the packages or any dependencies are installed, on "Package Manager Console" run the command ```update-database``` to create the database, and finally execute the program (wait a few seconds until it finishes downloading the data from the API).
 
 It will open the Swagger UI, I configured the UI to appear as the main page (just "https://[domain].com", not "https://[domain].com/swagger/index.html").
 
