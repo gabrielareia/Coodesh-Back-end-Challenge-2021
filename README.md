@@ -41,6 +41,11 @@ There are 5 main actions for this API (and 1 extra hidden action).
 
 To use ```PUT``` or ```DELETE``` an Api Key is needed, the Api Key for this project is in "appsettings.json" for convenience, in real life an Api Key should never be stored there.
 
+## To-Do List
+
+- [ ] Setup the project to work with Docker.
+- [ ] Fix the pagination. Get an object with the page results and include the previous and next page.
+
 ## Conclusion
 
 I really enjoyed working on this challenge, I hope to be able to participate in other projects like that in the future.
